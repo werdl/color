@@ -1,7 +1,7 @@
 ## color
 - A V library for working with colors
 ### Usage
-`v install werdl/color`
+`v install werdl.color`
 
 ```v
 import color { RGB, CMYK, HEX, rgb, cmyk, hex }
