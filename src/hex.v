@@ -5,9 +5,33 @@ pub struct HEX {
 		data string
 }
 
-pub fn hex(s string) HEX {
+pub fn hex_s(s string) HEX {
 	return HEX{
 		data: s
+	}
+}
+
+fn pad(s string) string {
+	mut out:=""
+	if s.len==3 {
+		for c in s {
+			out+=c.ascii_str().repeat(2)
+		}
+	} else if s.len>6 {
+		out=s[..6]
+	} else {
+		out="0".repeat(6-s.len)+s
+	}
+	return out
+}
+fn hex_(i int) !HEX {
+	return HEX{
+		data: "#${pad(i.hex())}"
+	}
+}
+pub fn hex(i int) HEX {
+	return hex_(i) or { 
+		hex_s("#000000")
 	}
 }
 
