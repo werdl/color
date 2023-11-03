@@ -3,9 +3,10 @@ module main
 import math
 
 pub struct RGB{
-	r int
-	g int
-	b int
+    pub:
+        r int
+        g int
+        b int
 }
 
 pub fn rgb(r int, g int, b int) RGB {
