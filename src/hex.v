@@ -34,6 +34,9 @@ pub fn hex(i int) HEX {
 		hex_s("#000000")
 	}
 }
+pub fn (h HEX) int() int {
+	return h.data[1..].int()
+}
 
 fn (h HEX) rgb_() !RGB {
 	if h.data.len != 7 || h.data[0] != `#` {
