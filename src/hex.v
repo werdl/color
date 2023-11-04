@@ -66,3 +66,6 @@ pub fn (h HEX) rgb() RGB {
 pub fn (h HEX) cmyk() CMYK {
 	return h.rgb().cmyk()
 }
+pub fn (h HEX) fmt(s string) string {
+	return h.rgb().fmt(s)
+}

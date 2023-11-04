@@ -38,3 +38,6 @@ pub fn (bits CMYK) rgb() RGB {
 pub fn (bits CMYK) hex() HEX {
 	return bits.rgb().hex()
 }
+pub fn (c CMYK) fmt(s string) string {
+    return c.rgb().fmt(s)
+}

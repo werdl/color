@@ -1,6 +1,7 @@
 module main
 
 import math
+import term
 
 pub struct RGB{
     pub:
@@ -52,7 +53,7 @@ fn (bits RGB) cmyk_() !CMYK {
         k: intoverflow(k*100)
     }
 }
-pub fn (r RGB) cmyk() CMYK {
+pub fn (r RGB) cmyk() CMYK {term.set_cursor_position(cursor_position)
 	return r.cmyk_() or { 
         CMYK{
             c: 0,
@@ -66,4 +67,8 @@ pub fn (r RGB) hex() HEX {
 	return HEX{
 		data: "#${r.r.hex()}${r.g.hex()}${r.b.hex()}"
 	}
+}
+
+pub fn (r RGB) fmt(s string) string {
+    return term.rgb(r.r, r.g, r.b, s)
 }
