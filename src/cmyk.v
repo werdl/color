@@ -2,10 +2,10 @@ module main
 
 pub struct CMYK {
 	pub:
-		c int
-		m int
-		y int
-		k int
+		c int [required]
+		m int [required]
+		y int [required]
+		k int [required]
 }
 
 pub fn cmyk(c int, m int, y int, k int) CMYK {
@@ -37,6 +37,9 @@ pub fn (bits CMYK) rgb() RGB {
 }
 pub fn (bits CMYK) hex() HEX {
 	return bits.rgb().hex()
+}
+pub fn (c CMYK) hsl() HSL {
+    return c.rgb().hsl()
 }
 pub fn (c CMYK) fmt(s string) string {
     return c.rgb().fmt(s)
