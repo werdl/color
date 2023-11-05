@@ -1,3 +1,5 @@
+module main
+
 pub struct HSL {
 	h int [required]
 	s int [required]

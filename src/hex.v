@@ -1,4 +1,4 @@
-module main
+module color
 
 pub struct HEX {
 pub:

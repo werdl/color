@@ -1,10 +1,10 @@
-module main
+module color
 
 import math
 import term
 
 // NOTE!
-// This project uses sRGB, not AdobeRGB!
+// This project uses sRGB, not AdobeRGB, at least by default
 
 pub struct RGB {
 pub:

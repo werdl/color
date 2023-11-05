@@ -1,3 +1,5 @@
+module color
+
 import math
 
 pub fn is_alpha(a f64) bool {

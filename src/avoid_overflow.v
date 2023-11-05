@@ -1,4 +1,4 @@
-module main
+module color
 
 fn intoverflow(f f64) int {
 	i := int(f)

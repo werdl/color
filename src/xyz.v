@@ -1,3 +1,5 @@
+module color
+
 import math
 
 struct XYZ {
