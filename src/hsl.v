@@ -79,3 +79,6 @@ pub fn (hsl HSL) hex() HEX {
 pub fn (hsl HSL) cielab() CIELAB {
     return hsl.rgb().cielab()
 }
+pub fn (hsl HSL) adobergb() AdobeRGB {
+    return hsl.rgb().adobergb()
+}

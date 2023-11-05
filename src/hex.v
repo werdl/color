@@ -84,3 +84,6 @@ pub fn (h HEX) fmt(s string) string {
 pub fn (h HEX) cielab() CIELAB {
 	return h.rgb().cielab()
 }
+pub fn (h HEX) adobergb() AdobeRGB {
+	return h.rgb().adobergb()
+} 

@@ -54,3 +54,19 @@ pub fn (c CIELAB) xyz() XYZ {
 pub fn (c CIELAB) rgb() RGB{
     return c.xyz().rgb()
 }
+
+pub fn (c CIELAB) adobergb() AdobeRGB {
+    return c.rgb().adobergb()
+}
+
+pub fn (c CIELAB) hsl() HSL {
+    return c.rgb().hsl()
+}
+
+pub fn (c CIELAB) cmyk() CMYK {
+    return c.rgb().cmyk()
+}
+
+pub fn (c CIELAB) hex() HEX {
+    return c.rgb().hex()
+}

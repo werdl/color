@@ -21,3 +21,7 @@ fn main() {
 
 }
 ```
+### Note
+- This library involves conversion between different color types (obviously), including non-linear conversion.
+- That means that while it is fairly accurate, it is not perfect!
+- To avoid this as far as possible, try to use RGB as the medium, which has the actual calculations between the complicated formats!

@@ -53,3 +53,19 @@ pub fn (a AdobeRGB) rgb() RGB {
 	n:=a.xyz().rgb() // no alpha
 	return rgba(n.r,n.g,n.b,a.a)
 }
+
+pub fn (a AdobeRGB) cmyk() CMYK {
+	return a.rgb().cmyk()
+}
+
+pub fn (a AdobeRGB) hex() HEX {
+	return a.rgb().hex()
+}
+
+pub fn (a AdobeRGB) cielab() CIELAB {
+	return a.rgb().cielab()
+}
+
+pub fn (a AdobeRGB) hsl() HSL {
+	return a.rgb().hsl()
+}
