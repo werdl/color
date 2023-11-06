@@ -1,10 +1,11 @@
 module color
 
 pub struct HSL {
-	h int [required]
-	s int [required]
-	l int [required]
-	a f64 [optional] = 1.0 // optional but ideal
+	pub mut:
+		h int [required]
+		s int [required]
+		l int [required]
+		a f64 [optional] = 1.0 // optional but ideal
 }
 
 fn hue_to_rgb(p f64, q f64, to f64) int {
@@ -95,4 +96,12 @@ pub fn (hsl HSL) adobergb() AdobeRGB {
 
 pub fn (hsl HSL) lch() LCH {
 	return hsl.cielab().lch()
+}
+
+pub fn (mut h HSL) normal() HSL {
+	h.h=normalise(h.h,0,360)
+	h.s=normalise(h.s,0,100)
+	h.l=normalise(h.l,0,100)
+
+	return h
 }
