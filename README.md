@@ -7,6 +7,7 @@
 > - Hex (with alpha)
 > - CIELAB
 > - AdobeRGB(A)
+> - LCH
 ### Usage
 `v install werdl.color`
 
