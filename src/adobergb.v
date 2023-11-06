@@ -3,7 +3,7 @@ module color
 import math
 
 pub struct AdobeRGB {
-pub:
+pub mut:
 	r int [required]
 	g int [required]
 	b int [required]
@@ -37,7 +37,7 @@ pub fn adobergb(r int, g int, b int) AdobeRGB {
 		r: r
 		g: g
 		b: b
-	}
+	}.normal()
 }
 
 pub fn adobergba(r int, g int, b int, a f64) AdobeRGB {
@@ -46,7 +46,7 @@ pub fn adobergba(r int, g int, b int, a f64) AdobeRGB {
 		g: g
 		b: b
 		a: round2dp(a)
-	}
+	}.normal()
 }
 
 pub fn (a AdobeRGB) fmt(s string) string {
@@ -76,4 +76,13 @@ pub fn (a AdobeRGB) hsl() HSL {
 
 pub fn (a AdobeRGB) lch() LCH {
 	return a.cielab().lch()
+}
+
+pub fn (ad AdobeRGB) normal() AdobeRGB {
+	mut a := ad
+	a.r = normalise(a.r, 0, 255)
+	a.g = normalise(a.g, 0, 255)
+	a.b = normalise(a.b, 0, 255)
+
+	return a
 }

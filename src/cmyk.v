@@ -1,7 +1,7 @@
 module color
 
 pub struct CMYK {
-pub:
+pub mut:
 	c int [required]
 	m int [required]
 	y int [required]
@@ -14,7 +14,7 @@ pub fn cmyk(c int, m int, y int, k int) CMYK {
 		m: m
 		y: y
 		k: k
-	}
+	}.normal()
 }
 
 pub fn (bits CMYK) rgb() RGB {
@@ -34,7 +34,7 @@ pub fn (bits CMYK) rgb() RGB {
 		r: int(r * 255.0)
 		g: int(g * 255.0)
 		b: int(b * 255.0)
-	}
+	}.normal()
 }
 
 pub fn (bits CMYK) hex() HEX {
@@ -55,4 +55,14 @@ pub fn (c CMYK) cielab() CIELAB {
 
 pub fn (c CMYK) lch() LCH {
 	return c.cielab().lch()
+}
+
+pub fn (cm CMYK) normal() CMYK {
+	mut c := cm
+	c.c = normalise(c.c, 0, 100)
+	c.m = normalise(c.m, 0, 100)
+	c.y = normalise(c.y, 0, 100)
+	c.k = normalise(c.k, 0, 100)
+
+	return c
 }

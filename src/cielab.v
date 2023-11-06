@@ -10,6 +10,7 @@ Which CIELAB constants do we use?
 */
 
 pub struct CIELAB {
+pub mut:
 	l f64
 	a f64
 	b f64
@@ -80,5 +81,15 @@ pub fn (c CIELAB) lch() LCH {
 		l: c.l
 		c: (math.hypot((c.a), (c.b)))
 		h: (math.atan2((c.b), (c.a)) * 360.0 / math.tau)
-	}
+	}.normal()
+}
+
+pub fn (ci CIELAB) normal() CIELAB {
+	mut c := ci
+
+	c.l = normalfse(c.l, 0, 100)
+	c.a = normalfse(c.a, -128, 128)
+	c.b = normalfse(c.b, -128, 128)
+
+	return c
 }

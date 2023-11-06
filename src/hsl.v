@@ -1,11 +1,11 @@
 module color
 
 pub struct HSL {
-	pub mut:
-		h int [required]
-		s int [required]
-		l int [required]
-		a f64 [optional] = 1.0 // optional but ideal
+pub mut:
+	h int [required]
+	s int [required]
+	l int [required]
+	a f64 [optional] = 1.0 // optional but ideal
 }
 
 fn hue_to_rgb(p f64, q f64, to f64) int {
@@ -35,7 +35,7 @@ pub fn hsl(h int, s int, l int) HSL {
 		h: h
 		s: s
 		l: l
-	}
+	}.normal()
 }
 
 pub fn hsla(h int, s int, l int, a f64) HSL {
@@ -44,7 +44,7 @@ pub fn hsla(h int, s int, l int, a f64) HSL {
 		s: s
 		l: l
 		a: round2dp(a)
-	}
+	}.normal()
 }
 
 pub fn (hsl HSL) rgb() RGB {
@@ -59,7 +59,7 @@ pub fn (hsl HSL) rgb() RGB {
 			r: gray_value
 			g: gray_value
 			b: gray_value
-		}
+		}.normal()
 	}
 
 	q := if l < 0.5 {
@@ -75,7 +75,7 @@ pub fn (hsl HSL) rgb() RGB {
 		g: hue_to_rgb(p, q, h / 360.0)
 		b: hue_to_rgb(p, q, (h - 120.0) / 360.0)
 		a: hsl.a
-	}
+	}.normal()
 }
 
 pub fn (hsl HSL) cmyk() CMYK {
@@ -98,10 +98,12 @@ pub fn (hsl HSL) lch() LCH {
 	return hsl.cielab().lch()
 }
 
-pub fn (mut h HSL) normal() HSL {
-	h.h=normalise(h.h,0,360)
-	h.s=normalise(h.s,0,100)
-	h.l=normalise(h.l,0,100)
+pub fn (hs HSL) normal() HSL {
+	mut h := hs
+
+	h.h = normalise(h.h, 0, 360)
+	h.s = normalise(h.s, 0, 100)
+	h.l = normalise(h.l, 0, 100)
 
 	return h
 }

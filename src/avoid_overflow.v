@@ -9,11 +9,20 @@ fn intoverflow(f f64) int {
 	}
 }
 
-
 fn normalise(x int, min int, max int) int {
-	if x>max {
+	if x > max {
 		return max
-	} else if x<min {
+	} else if x < min {
+		return min
+	} else {
+		return x
+	}
+}
+
+fn normalfse(x f64, min f64, max f64) f64 {
+	if x > max {
+		return max
+	} else if x < min {
 		return min
 	} else {
 		return x

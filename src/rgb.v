@@ -7,11 +7,11 @@ import term
 // This project uses sRGB, not AdobeRGB, at least by default
 
 pub struct RGB {
-	pub mut:
-		r int [required]
-		g int [required]
-		b int [required]
-		a f64 [optional] = 1 // optional but ideal
+pub mut:
+	r int [required]
+	g int [required]
+	b int [required]
+	a f64 [optional] = 1 // optional but ideal
 }
 
 pub fn rgb(r int, g int, b int) RGB {
@@ -19,7 +19,7 @@ pub fn rgb(r int, g int, b int) RGB {
 		r: r
 		g: g
 		b: b
-	}
+	}.normal()
 }
 
 pub fn rgba(r int, g int, b int, a f64) RGB {
@@ -28,7 +28,7 @@ pub fn rgba(r int, g int, b int, a f64) RGB {
 		g: g
 		b: b
 		a: round2dp(a)
-	}
+	}.normal()
 }
 
 fn (bits RGB) cmyk_() !CMYK {
@@ -61,7 +61,7 @@ fn (bits RGB) cmyk_() !CMYK {
 			m: int(m * 100.0)
 			y: int(y * 100.0)
 			k: int(k * 100.0)
-		}
+		}.normal()
 	}
 	// Handle the case where K is close to 1
 	return CMYK{
@@ -69,7 +69,7 @@ fn (bits RGB) cmyk_() !CMYK {
 		m: int(g * 100)
 		y: int(b * 100)
 		k: int(k * 100)
-	}
+	}.normal()
 }
 
 pub fn (r RGB) cmyk() CMYK {
@@ -86,7 +86,7 @@ pub fn (r RGB) cmyk() CMYK {
 pub fn (r RGB) hex() HEX {
 	return HEX{
 		data: '#${r.r.hex()}${r.g.hex()}${r.b.hex()}${int(r.a * 255).hex()}'
-	}
+	}.normal()
 }
 
 pub fn (r RGB) fmt(s string) string {
@@ -124,7 +124,7 @@ pub fn (rgb RGB) hsl() HSL {
 		s: saturation
 		l: lightness
 		a: rgb.a
-	}
+	}.normal()
 }
 
 pub fn (rgb RGB) xyz() XYZ {
@@ -179,10 +179,11 @@ pub fn (r RGB) lch() LCH {
 	return r.cielab().lch()
 }
 
-pub fn (mut r RGB) normal() RGB {
-	r.r=normalise(r.r,0,255)
-	r.g=normalise(r.r,0,255)
-	r.b=normalise(r.r,0,255)
+pub fn (rgb RGB) normal() RGB {
+	mut r := rgb
+	r.r = normalise(r.r, 0, 255)
+	r.g = normalise(r.g, 0, 255)
+	r.b = normalise(r.b, 0, 255)
 
 	return r
 }

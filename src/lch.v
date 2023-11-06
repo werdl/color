@@ -3,6 +3,7 @@ module color
 import math
 
 struct LCH {
+pub mut:
 	l f64
 	c f64
 	h f64
@@ -14,7 +15,7 @@ pub fn (l LCH) cielab() CIELAB {
 		l: l.l
 		a: (l.c * math.cos(h_rad))
 		b: (l.h * math.sin(h_rad))
-	}
+	}.normal()
 }
 
 pub fn (l LCH) fmt(s string) string {
@@ -39,4 +40,13 @@ pub fn (l LCH) hex() HEX {
 
 pub fn (l LCH) adobergb() AdobeRGB {
 	return l.cielab().adobergb()
+}
+
+pub fn (lc LCH) normal() LCH {
+	mut l := lc
+	l.l = normalfse(l.l, 0, 100)
+	l.c = normalfse(l.c, 0, 128)
+	l.h = normalfse(l.h, 0, 360)
+
+	return l
 }
