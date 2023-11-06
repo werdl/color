@@ -49,6 +49,10 @@ pub fn adobergba(r int, g int, b int, a f64) AdobeRGB {
 	}
 }
 
+pub fn (a AdobeRGB) fmt(s string) string {
+	return a.rgb().fmt(s)
+}
+
 pub fn (a AdobeRGB) rgb() RGB {
 	n := a.xyz().rgb() // no alpha
 	return rgba(n.r, n.g, n.b, a.a)

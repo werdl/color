@@ -51,6 +51,10 @@ pub fn (c CIELAB) xyz() XYZ {
 	}
 }
 
+pub fn (c CIELAB) fmt(s string) string {
+	return c.rgb().fmt(s)
+}
+
 pub fn (c CIELAB) rgb() RGB {
 	return c.xyz().rgb()
 }

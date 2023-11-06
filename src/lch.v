@@ -17,6 +17,10 @@ pub fn (l LCH) cielab() CIELAB {
 	}
 }
 
+pub fn (l LCH) fmt(s string) string {
+	return l.rgb().fmt(s)
+}
+
 pub fn (l LCH) rgb() RGB {
 	return l.cielab().rgb()
 }

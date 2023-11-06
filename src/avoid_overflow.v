@@ -8,4 +8,3 @@ fn intoverflow(f f64) int {
 		return 0
 	}
 }
-

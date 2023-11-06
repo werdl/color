@@ -14,7 +14,6 @@ pub:
 	a f64 [optional] = 1 // optional but ideal
 }
 
-
 pub fn rgb(r int, g int, b int) RGB {
 	return RGB{
 		r: r
@@ -180,6 +179,5 @@ pub fn (r RGB) lch() LCH {
 	return r.cielab().lch()
 }
 
-pub fn (r RGB) normal() RGB {
-
+pub fn (r RGB) normal() {
 }
