@@ -8,3 +8,14 @@ fn intoverflow(f f64) int {
 		return 0
 	}
 }
+
+
+fn normalise(x int, min int, max int) int {
+	if x>max {
+		return max
+	} else if x<min {
+		return min
+	} else {
+		return x
+	}
+}

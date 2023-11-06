@@ -7,11 +7,11 @@ import term
 // This project uses sRGB, not AdobeRGB, at least by default
 
 pub struct RGB {
-pub:
-	r int [required]
-	g int [required]
-	b int [required]
-	a f64 [optional] = 1 // optional but ideal
+	pub mut:
+		r int [required]
+		g int [required]
+		b int [required]
+		a f64 [optional] = 1 // optional but ideal
 }
 
 pub fn rgb(r int, g int, b int) RGB {
@@ -179,5 +179,10 @@ pub fn (r RGB) lch() LCH {
 	return r.cielab().lch()
 }
 
-pub fn (r RGB) normal() {
+pub fn (mut r RGB) normal() RGB {
+	r.r=normalise(r.r,0,255)
+	r.g=normalise(r.r,0,255)
+	r.b=normalise(r.r,0,255)
+
+	return r
 }
