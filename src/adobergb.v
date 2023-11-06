@@ -69,3 +69,7 @@ pub fn (a AdobeRGB) cielab() CIELAB {
 pub fn (a AdobeRGB) hsl() HSL {
 	return a.rgb().hsl()
 }
+
+pub fn (a AdobeRGB) lch() LCH {
+	return a.cielab().lch()
+}

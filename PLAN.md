@@ -8,3 +8,4 @@
 - CMYK
 - Hex (with alpha support)
 - CIELAB
+- LCH

@@ -11,9 +11,11 @@ struct XYZ {
 fn (x XYZ) cielab() CIELAB {
 	mut value := 0.0
 
-	var_x := x.x / 95.0489 // standard illuminant D65
-	var_y := x.y / 100.0
-	var_z := x.z / 108.8840
+	xn, yn, zn := d65()
+
+	var_x := x.x / xn // standard illuminant D65
+	var_y := x.y / yn
+	var_z := x.z / zn
 
 	mut xyz := [var_x, var_y, var_z]
 	for j in 0 .. xyz.len {
@@ -27,9 +29,9 @@ fn (x XYZ) cielab() CIELAB {
 	}
 
 	return CIELAB{
-		l: int(math.round(116.0 * xyz[1]) - 16.0)
-		a: int(math.round(500.0 * (xyz[0] - xyz[1])))
-		b: int(math.round(200.0 * (xyz[1] - xyz[2])))
+		l: (116.0 * xyz[1]) - 16.0
+		a: 500.0 * (xyz[0] - xyz[1])
+		b: 200.0 * (xyz[1] - xyz[2])
 	}
 }
 

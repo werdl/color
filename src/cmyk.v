@@ -52,3 +52,7 @@ pub fn (c CMYK) fmt(s string) string {
 pub fn (c CMYK) cielab() CIELAB {
 	return c.rgb().cielab()
 }
+
+pub fn (c CMYK) lch() LCH {
+	return c.cielab().lch()
+}

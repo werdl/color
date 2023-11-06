@@ -100,3 +100,7 @@ pub fn (h HEX) cielab() CIELAB {
 pub fn (h HEX) adobergb() AdobeRGB {
 	return h.rgb().adobergb()
 }
+
+pub fn (h HEX) lch() LCH {
+	return h.cielab().lch()
+}

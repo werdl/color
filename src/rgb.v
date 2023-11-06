@@ -14,6 +14,7 @@ pub:
 	a f64 [optional] = 1 // optional but ideal
 }
 
+
 pub fn rgb(r int, g int, b int) RGB {
 	return RGB{
 		r: r
@@ -173,4 +174,12 @@ pub fn (r RGB) cielab() CIELAB {
 pub fn (r RGB) adobergb() AdobeRGB {
 	n := r.xyz().adobergb() // no alpha
 	return adobergba(n.r, n.g, n.b, r.a)
+}
+
+pub fn (r RGB) lch() LCH {
+	return r.cielab().lch()
+}
+
+pub fn (r RGB) normal() RGB {
+
 }
